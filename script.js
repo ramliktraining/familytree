@@ -1,27 +1,17 @@
-// Initial Family Tree Data with couple
+// Initial Family Tree Data with a couple as root
 let familyData = {
   text: { name: "👴 Grandfather & 👵 Grandmother" },
   children: [
     {
       text: { name: "👨 Father" },
-      children: [
-        // Add children of Father here
-        { text: { name: "👦 Child 1" } },
-        { text: { name: "👧 Child 2" } }
-      ]
-    },
-    {
-      text: { name: "👩 Aunt" },
-      children: [
-        { text: { name: "👦 Cousin 1" } }
-      ]
+      children: []
     }
   ]
 };
 
-// Function to render the tree
+// Render the tree
 function renderTree() {
-  document.getElementById("tree-simple").innerHTML = ""; // clear old tree
+  document.getElementById("tree-simple").innerHTML = ""; 
   new Treant({
     chart: {
       container: "#tree-simple",
@@ -33,16 +23,21 @@ function renderTree() {
   });
 }
 
-// Recursive function to find a parent and add child
-function addMember(node, parentName, childName) {
+// Recursive function to find a parent (supports couples) and add child
+function addMember(node, parentName, childName, spouseName = "") {
+  // Check if this node matches parentName (or includes it for couples)
   if (node.text.name.includes(parentName)) {
+    // If a spouse is added, merge into one node
+    if (spouseName) node.text.name = `${node.text.name.split("&")[0].trim()} & ${spouseName}`;
+    
     if (!node.children) node.children = [];
     node.children.push({ text: { name: childName } });
     return true;
   }
+
   if (node.children) {
     for (let child of node.children) {
-      if (addMember(child, parentName, childName)) return true;
+      if (addMember(child, parentName, childName, spouseName)) return true;
     }
   }
   return false;
@@ -53,18 +48,21 @@ document.getElementById("familyForm").addEventListener("submit", function(e) {
   e.preventDefault();
   let name = document.getElementById("name").value.trim();
   let parent = document.getElementById("parent").value.trim();
+  let spouse = document.getElementById("spouse")?.value.trim() || "";
 
   if (!name) return;
 
   if (parent === "" || familyData.text.name.includes(parent)) {
     if (!familyData.children) familyData.children = [];
-    familyData.children.push({ text: { name: name } });
+    let newNodeName = spouse ? `${name} & ${spouse}` : name;
+    familyData.children.push({ text: { name: newNodeName } });
   } else {
-    let added = addMember(familyData, parent, name);
+    let added = addMember(familyData, parent, name, spouse);
     if (!added) alert("Parent not found!");
   }
 
   document.getElementById("name").value = "";
+  if(document.getElementById("spouse")) document.getElementById("spouse").value = "";
   document.getElementById("parent").value = "";
 
   renderTree();
