@@ -1,7 +1,22 @@
-// Initial Family Tree Data
+// Initial Family Tree Data with couple
 let familyData = {
-  text: { name: "👴 Grandparent" },
-  children: []
+  text: { name: "👴 Grandfather & 👵 Grandmother" },
+  children: [
+    {
+      text: { name: "👨 Father" },
+      children: [
+        // Add children of Father here
+        { text: { name: "👦 Child 1" } },
+        { text: { name: "👧 Child 2" } }
+      ]
+    },
+    {
+      text: { name: "👩 Aunt" },
+      children: [
+        { text: { name: "👦 Cousin 1" } }
+      ]
+    }
+  ]
 };
 
 // Function to render the tree
@@ -20,7 +35,7 @@ function renderTree() {
 
 // Recursive function to find a parent and add child
 function addMember(node, parentName, childName) {
-  if (node.text.name === parentName) {
+  if (node.text.name.includes(parentName)) {
     if (!node.children) node.children = [];
     node.children.push({ text: { name: childName } });
     return true;
@@ -41,7 +56,7 @@ document.getElementById("familyForm").addEventListener("submit", function(e) {
 
   if (!name) return;
 
-  if (parent === "" || familyData.text.name === parent) {
+  if (parent === "" || familyData.text.name.includes(parent)) {
     if (!familyData.children) familyData.children = [];
     familyData.children.push({ text: { name: name } });
   } else {
