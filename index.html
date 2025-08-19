@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Family Tree</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Treant.js dependencies -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/treant-js/1.0/Treant.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/treant-js/1.0/Treant.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>My Family Tree</h1>
+  </header>
+
+  <main>
+    <section id="controls">
+      <h2>Add Family Member</h2>
+      <form id="familyForm">
+        <input type="text" id="name" placeholder="Member Name" required>
+        <input type="text" id="parent" placeholder="Parent Name (optional)">
+        <button type="submit">Add Member</button>
+      </form>
+    </section>
+
+    <div id="tree-simple"></div>
+  </main>
+
+  <footer>
+    <p>Created with ❤️ by Ramlik</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
