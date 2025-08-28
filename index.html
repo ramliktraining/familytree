@@ -1,38 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Family Tree</title>
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Treant.js dependencies -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/treant-js/1.0/Treant.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/treant-js/1.0/Treant.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>My Family Tree</h1>
-  </header>
+    <header>
+        <h1>Welcome to My Website</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main>
-    <section id="controls">
-      <h2>Add Family Member</h2>
-      <form id="familyForm">
-        <input type="text" id="name" placeholder="Member Name" required>
-        <input type="text" id="parent" placeholder="Parent Name (optional)">
-        <button type="submit">Add Member</button>
-      </form>
-    </section>
+    <div class="container">
+        <h2>About Us</h2>
+        <p>This is the home page of my static website. You can find information about my company and its services here.</p>
+        <p>I hope you enjoy your stay! 😊</p>
+    </div>
 
-    <div id="tree-simple"></div>
-  </main>
-
-  <footer>
-    <p>Created with ❤️ by Ramlik</p>
-  </footer>
-
-  <script src="script.js"></script>
+    <footer>
+        <p>&copy; 2025 My Website. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
